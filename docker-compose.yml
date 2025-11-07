@@ -7,9 +7,11 @@ services:
     ports:
       - "8001:8000"
     environment:
+      - ENV=dev
       - DATABASE_URL=postgresql://postgres:postgres@imunetrack-auth-db:5432/imunetrack_auth
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - imunetrack-network
 
